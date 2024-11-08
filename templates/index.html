@@ -1,0 +1,52 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreetShop</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Add</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="/images/logo.png" alt="StreetShop Logo">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h2>LES PRODUITS</h2>
+        <section class="products">
+            {{range .}}
+            <div class="product">
+                <img src="{{.ImagePath}}" alt="{{.Name}}">
+                <h3>{{.Name}}</h3>
+                {{if .OnSale}}
+                    <p class="price"><s>{{.Price}}€</s> <span style="color: red;">{{.SalePrice}}€</span></p>
+                    <!-- Lien vers la page produit avec l'ID du produit -->
+                    <a href="/product?id={{.ID}}">
+                        <button class="reduced">En solde</button>
+                    </a>
+                {{else}}
+                    <p class="price">{{.Price}}€</p>
+                    <!-- Lien vers la page produit avec l'ID du produit -->
+                    <a href="/product?id={{.ID}}">
+                        <button class="consult">Consulter</button>
+                    </a>
+                {{end}}
+            </div>
+            {{end}}
+        </section>
+    </main>
+
+</body>
+</html>

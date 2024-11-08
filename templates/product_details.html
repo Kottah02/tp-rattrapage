@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du produit - {{.Name}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Add</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="/images/logo.png" alt="StreetShop Logo">
+        </div>
+    </header>
+
+    <!-- Détails du Produit -->
+    <main class="product-detail-page">
+        <div class="product-detail">
+            <div class="product-image">
+                <img src="{{.ImagePath}}" alt="{{.Name}}">
+            </div>
+            <div class="product-info">
+                <h1>{{.Name}}</h1>
+                <p class="description">{{.Description}}</p>
+                
+                <p class="pricing">
+                    {{if .OnSale}}
+                        <span class="old-price">{{.Price}}€</span>
+                        <span class="sale-price">{{.SalePrice}}€</span>
+                    {{else}}
+                        <span class="price">{{.Price}}€</span>
+                    {{end}}
+                </p>
+
+                <!-- Affichage du stock et des tailles disponibles -->
+                <p><strong>Stock :</strong> {{.Stock}} unités disponibles</p>
+                
+                {{if .Sizes}}
+                <p><strong>Tailles disponibles :</strong></p>
+                <ul class="sizes">
+                    {{range .Sizes}}
+                        <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{end}}
+
+                <!-- Actions -->
+                <div class="actions">
+                    <button class="add-to-cart">Ajouter au panier</button>
+                    <button class="back-to-products"><a href="/">Retour aux produits</a></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
